@@ -5,6 +5,8 @@ class MyServer
     @socket = MySocket.new
     @client_writers = []
     @master_reader, @master_writer = IO.pipe
+
+    write_incoming_messages_to_child_processes
   end
 
   def listen

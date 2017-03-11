@@ -10,7 +10,7 @@ class MyClient
     @socket = MySocket.new(host, port)
     puts 'Connected!'
 
-    client.puts @nickname
+    @socket.puts @nickname
 
     listen_server
     listen_stdin
