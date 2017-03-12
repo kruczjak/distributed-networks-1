@@ -22,7 +22,24 @@ class MyServer
     def write_incoming_udp_data
       Thread.new do
         while (incoming = @udp_socket.recvfrom)
+          unless @clients_udp.key?(incoming[1][1])
+            @clients_udp[incoming[1][1]] = incoming[0]
+            puts "Initialized #{incoming[0]} as port #{incoming[1][1]}"
+            next
+          end
+
           puts "Received\n#{incoming[0]}\nfrom #{incoming[1]}"
+
+          @clients_udp.each do |port_number, _|
+            next if port_number == incoming[1][1]
+
+            @udp_socket.udp_send(
+              colorized_string(@clients_udp[incoming[1][1]], incoming[0]),
+              0,
+              incoming[1][2],
+              port_number,
+            )
+          end
         end
       end
     end

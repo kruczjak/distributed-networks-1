@@ -4,7 +4,7 @@ require 'forwardable'
 class MyUdpSocket
   extend Forwardable
 
-  def_delegator :@socket, :close
+  def_delegator :@socket, :close, :gets
 
   def initialize(host = 'localhost', port = 5000)
     @socket = UDPSocket.new

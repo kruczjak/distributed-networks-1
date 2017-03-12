@@ -6,6 +6,7 @@ class MyServer
     @socket = MySocket.new(nil, 5000)
     @udp_socket = MyUdpSocket.new
     @client_writers = []
+    @clients_udp = {}
     @master_reader, @master_writer = IO.pipe
     @colors = {}
 
