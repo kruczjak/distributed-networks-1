@@ -7,7 +7,7 @@ class MyClient
 
   def start
     puts "Connecting to #{@host} on port #{@port}."
-    @socket = MySocket.new(host, port)
+    @socket = MySocket.new(@host, @port)
     puts 'Connected!'
 
     @socket.puts @nickname

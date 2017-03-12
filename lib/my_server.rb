@@ -2,7 +2,7 @@ class MyServer
   include MyServer::Processors
 
   def initialize
-    @socket = MySocket.new
+    @socket = MySocket.new(nil, 5000)
     @client_writers = []
     @master_reader, @master_writer = IO.pipe
 
@@ -10,6 +10,7 @@ class MyServer
   end
 
   def listen
+    puts 'Starting listening'
     loop { accept_connection }
   end
 

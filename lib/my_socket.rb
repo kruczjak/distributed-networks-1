@@ -1,10 +1,13 @@
 require 'socket'
+require 'forwardable'
 
 class MySocket
   extend Forwardable
 
+  def_delegator :@socket, :accept
+
   def initialize(host = 'localhost', port = 5000)
-    @socket = TCPServer.open(host, port)
+    host ? @socket = TCPServer.open(host, port) : @socket = TCPServer.open(port)
   end
 
   def gets

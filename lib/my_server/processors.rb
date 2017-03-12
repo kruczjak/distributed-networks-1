@@ -1,4 +1,4 @@
-module MyServer
+class MyServer
   module Processors
     def write_incoming_messages_to_child_processes
       Thread.new do
