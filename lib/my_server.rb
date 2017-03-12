@@ -2,6 +2,7 @@ class MyServer
   include MyServer::Processors
 
   def initialize
+    puts 'Initializing server'
     @socket = MySocket.new(nil, 5000)
     @client_writers = []
     @master_reader, @master_writer = IO.pipe

@@ -7,7 +7,7 @@ class MySocket
   def_delegator :@socket, :accept
 
   def initialize(host = 'localhost', port = 5000)
-    host ? @socket = TCPServer.open(host, port) : @socket = TCPServer.open(port)
+    @socket = (host ? TCPSocket.open(host, port) : TCPServer.open(port))
   end
 
   def gets
