@@ -11,7 +11,7 @@ class MyServer
     def write_messages_to_client(nickname, client_reader, socket)
       Thread.new do
         while (incoming = client_reader.gets)
-          unless incoming.start_with?(nickname)
+          unless incoming.uncolorize.start_with?(nickname)
             puts incoming
             socket.puts incoming
           end
