@@ -4,11 +4,13 @@ class MyServer
   def initialize
     puts 'Initializing server'
     @socket = MySocket.new(nil, 5000)
+    @udp_socket = MyUdpSocket.new
     @client_writers = []
     @master_reader, @master_writer = IO.pipe
     @colors = {}
 
     write_incoming_messages_to_child_processes
+    write_incoming_udp_data
   end
 
   def listen

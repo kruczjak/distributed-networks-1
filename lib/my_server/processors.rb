@@ -19,6 +19,14 @@ class MyServer
       end
     end
 
+    def write_incoming_udp_data
+      Thread.new do
+        while (incoming = @udp_socket.recvfrom)
+          puts "Received\n#{incoming[0]}\nfrom #{incoming[1]}"
+        end
+      end
+    end
+
     def read_line_from(socket)
       socket.gets.chomp
     end
